@@ -15,7 +15,6 @@ PHP class for defining and parsing CLI arguments. Allows you to specify required
     - [Example: Defining Different Argument Types](#example-defining-different-argument-types)
     - [Example: Show Help](#example-show-help)
   - [Contributing](#contributing)
-  - [License](#license)
 
 ---
 
@@ -124,9 +123,3 @@ echo Arguments::Help();
 ## Contributing
 
 Pull requests and issues are welcome! Please open an issue to discuss your idea or bug before submitting a PR.
-
----
-
-## License
-
-MIT License. See LICENSE file for details.
