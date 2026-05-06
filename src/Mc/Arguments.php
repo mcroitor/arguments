@@ -59,9 +59,9 @@ class Arguments
     /**
      * Gets the value of a specific argument.
      * @param string $name
-     * @return string|null
+     * @return string|bool|null
      */
-    public static function GetValue(string $name): ?string
+    public static function GetValue(string $name): string|bool|null
     {
         return self::$values[$name] ?? null;
     }
@@ -185,7 +185,9 @@ class Arguments
         foreach ($required as $requiredArg) {
             $shortOpt = self::$args[$requiredArg]['short'] ?? null;
             $longOpt = self::$args[$requiredArg]['long'] ?? null;
-            if (($shortOpt && !isset($result[$shortOpt])) && ($longOpt && !isset($result[$longOpt]))) {
+            $shortPresent = $shortOpt !== null && array_key_exists($shortOpt, $result);
+            $longPresent = $longOpt !== null && array_key_exists($longOpt, $result);
+            if (!$shortPresent && !$longPresent) {
                 throw new \InvalidArgumentException("Missing required argument: {$requiredArg}");
             }
         }
@@ -201,14 +203,7 @@ class Arguments
         $longOpts = self::LongOptions();
         $result = getopt($shortOpts, $longOpts);
 
-        try {
-            self::ValidateRequired($result);
-        }
-        catch (\InvalidArgumentException $e) {
-            echo "Error: " . $e->getMessage() . "\n";
-            echo self::Help();
-            exit(1);
-        }
+        self::ValidateRequired($result);
 
         foreach ($result as $key => $value) {
             $argName = self::GetArgumentName($key);
