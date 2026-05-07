@@ -1,6 +1,6 @@
 # Arguments
 
-PHP class for defining and parsing CLI arguments. Allows you to specify required and optional arguments, types, and default values. Provides methods for validation and retrieval of argument values.
+PHP class for defining and parsing CLI arguments. Allows you to specify required and optional arguments and default values. Provides methods for validation and retrieval of argument values.
 
 ---
 
@@ -35,8 +35,8 @@ use Mc\Arguments;
 
 // Define arguments
 Arguments::Set([
-    'input' => ['required' => true, 'type' => 'string'],
-    'output' => ['required' => false, 'type' => 'string', 'default' => 'output.txt'],
+    'input' => ['short' => 'i', 'long' => 'input', 'required' => true],
+    'output' => ['short' => 'o', 'long' => 'output', 'required' => false, 'default' => 'output.txt'],
 ]);
 
 // Parse arguments
