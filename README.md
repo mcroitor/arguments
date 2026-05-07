@@ -35,8 +35,8 @@ use Mc\Arguments;
 
 // Define arguments
 Arguments::Set([
-    'input' => ['required' => true],
-    'output' => ['required' => false, 'default' => 'output.txt'],
+    'input' => ['short' => 'i', 'long' => 'input', 'required' => true],
+    'output' => ['short' => 'o', 'long' => 'output', 'required' => false, 'default' => 'output.txt'],
 ]);
 
 // Parse arguments
