@@ -185,6 +185,9 @@ class Arguments
         foreach ($required as $requiredArg) {
             $shortOpt = self::$args[$requiredArg]['short'] ?? null;
             $longOpt = self::$args[$requiredArg]['long'] ?? null;
+            if ($shortOpt === null && $longOpt === null) {
+                throw new \InvalidArgumentException("Required argument must define short or long option: {$requiredArg}");
+            }
             $shortPresent = $shortOpt !== null && array_key_exists($shortOpt, $result);
             $longPresent = $longOpt !== null && array_key_exists($longOpt, $result);
             if (!$shortPresent && !$longPresent) {
